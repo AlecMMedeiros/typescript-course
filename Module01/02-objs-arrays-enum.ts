@@ -19,11 +19,18 @@ enum Role {
   Read_Only, // 1
   Author, // 2
 }
-const person = {
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[]; // array of strings
+  role: Role; // enum
+  favoriteRomanticPair: [string, string]; // tuple
+} = {
   name: "Alecsandro",
   age: 46,
   hobbies: ["sports", "cooking"],
   role: Role.Author,
+  favoriteRomanticPair: ["Mary", "John"],
 };
 
 let favoriteActivities: string[];
@@ -36,6 +43,6 @@ for (let hobby of person.hobbies) {
   console.log(hobby.toUpperCase());
 }
 
-console.log(Role.Author)
+console.log(Role.Author);
 
 console.log(person.name);

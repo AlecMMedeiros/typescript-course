@@ -1,28 +1,17 @@
-type Combinable = number | string; // Type alias
+// Unknow and Never types
 
-function add(
-  n1: Combinable, // Type alias
-  n2: number | string, //Union Types
-  resultConversion: 'as-number' | 'as-text' // literal type and Union Types
-) {  
-  let result: number | string;
-  if ( resultConversion === "as-text" ) {
-    return (result = n1.toString() + n2.toString());
-  }
-  if (
-    (typeof n1 === "number" && typeof n2 === "number") ||
-    resultConversion === "as-number"
-  ) {
-    return (result = +n1 + +n2);
-  }
+let userInput: unknown;
+let userName: string;
+userName = "John";
+
+userInput = 10; // The variable accepts the number...
+userInput = "Anna"; // The variable accepts the string...so, it's works like 'any' type, right?
+// userName = userInput; // Doesn't works, cause Typescript still understand that userInput is an 'unknown' type. So you have to check the type to make it understand that the actual value is a string.
+if (typeof userInput === "string") {
+  userName = userInput; // Now it will work! So 'unknow' is more restrict than 'any'.
 }
 
-const combineAges = add(20, 50, "as-number");
-const combineStringAges = add("20", "50", "as-number");
-const combineNumbersAges = add(20, 50, "as-text");
-const combineNames = add("Maria", "John", "as-text");
-
-console.log(combineAges);
-console.log(combineStringAges);
-console.log(combineNumbersAges);
-console.log(combineNames);
+function generateError(message: string, code: number): never {
+  // This function will never return anything, not even 'undefined'. So, it's recommend in cases like that to use 'never' type.
+  throw { message: message, errorCode: code };
+}
