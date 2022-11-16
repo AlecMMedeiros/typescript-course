@@ -1,8 +1,11 @@
 "use strict";
-class Department2 {
+class Department {
     constructor(name) {
         this.name = name;
         this.employees = [];
+    }
+    describe() {
+        console.log(`Department: ${this.name}`);
     }
     addEmployees(employee) {
         this.employees.push(employee);
@@ -14,8 +17,8 @@ class Department2 {
         console.log("--------------------------------------");
     }
 }
-Department2.fiscalYear = 2022;
-class ACCDepartment2 extends Department2 {
+Department.fiscalYear = 2022;
+class ACCDepartment extends Department {
     constructor(...reports) {
         super("Accounting");
         this.reports = reports;
@@ -25,14 +28,11 @@ class ACCDepartment2 extends Department2 {
         if (this.lastReport) {
             return `The last report is: ${this.lastReport}`;
         }
-        throw new Error("No report found!");
-    }
-    describe() {
-        console.log(`Department: ${this.name}`);
+        throw new Error('No report found!');
     }
     set mostRecentReport(text) {
         if (!text)
-            throw new Error("Please pass a valid text");
+            throw new Error('Please pass a valid text');
         this.addReport(text);
     }
     addReport(report) {
@@ -43,14 +43,10 @@ class ACCDepartment2 extends Department2 {
         console.log(this.reports);
     }
 }
-class ITDepartment2 extends Department2 {
+class ITDepartment extends Department {
     constructor(...admins) {
         super("BackEnd");
-        this.email = "contact@mail.com";
         this.admins = admins;
-    }
-    describe() {
-        console.log(`Department: ${this.name} - E-mail ${this.email}`);
     }
     addEmployees(employee) {
         if (employee.length < 3) {
@@ -69,8 +65,20 @@ class ITDepartment2 extends Department2 {
         console.log("-----------------------------------");
     }
 }
-const accounting2 = new ACCDepartment2();
-const backEnd2 = new ITDepartment2();
-console.log(Department2.fiscalYear);
-accounting2.describe();
-backEnd2.describe();
+const accounting = new ACCDepartment();
+const backEnd = new ITDepartment();
+console.log(Department.fiscalYear);
+accounting.describe();
+accounting.addEmployees("Jannet");
+accounting.printEmployeesInformation();
+accounting.addReport(`We're going to brake!`);
+accounting.mostRecentReport = `We're going to brake2!`;
+console.log(accounting.mostRecentReport);
+accounting.listReports();
+console.log("-----------------Inherintance----------------");
+backEnd.describe();
+backEnd.addEmployees("S");
+backEnd.addEmployees("Sarah");
+backEnd.addAdmins("Josef", "Cris");
+backEnd.printEmployeesInformation();
+backEnd.printAdminInformations();
