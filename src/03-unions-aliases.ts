@@ -1,4 +1,4 @@
-type Combinable = number | string; // Type alias
+export type Combinable = number | string; // Type alias
 
 function add(
   n1: Combinable, // Type alias
