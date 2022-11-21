@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function add(n1, n2, resultConversion) {
     let result;
     if (resultConversion === "as-text") {
